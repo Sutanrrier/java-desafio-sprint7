@@ -22,4 +22,8 @@ public class CarroService {
 	public Optional<Carro> findById(Integer id) {
 		return repository.findById(id);
 	}
+	
+	public Carro save(Carro carro) {
+		return repository.save(carro);
+	}
 }
