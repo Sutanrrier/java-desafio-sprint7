@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sutanrrier.desafiospring.entities.Estacionamento;
 
 @Repository
-public interface EstacionamentoRepository extends JpaRepository<Estacionamento, Long> {
+public interface EstacionamentoRepository extends JpaRepository<Estacionamento, Integer> {
 
 }

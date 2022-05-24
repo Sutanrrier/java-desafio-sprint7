@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sutanrrier.desafiospring.entities.Carro;
 
 @Repository
-public interface CarroRepository extends JpaRepository<Carro, Long> {
+public interface CarroRepository extends JpaRepository<Carro, Integer> {
 
 }
