@@ -22,4 +22,8 @@ public class EstacionamentoService {
 	public Optional<Estacionamento> findById(Integer id){
 		return repository.findById(id);
 	}
+	
+	public Estacionamento save(Estacionamento estacionamento) {
+		return repository.save(estacionamento);
+	}
 }
