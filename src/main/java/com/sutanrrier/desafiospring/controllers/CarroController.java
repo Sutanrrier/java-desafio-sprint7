@@ -64,6 +64,7 @@ public class CarroController {
 		if(!carro.isPresent() || obj.getId() != id) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Carro não encontrado no banco de dados!");
 		}
+		obj.setDataCriacao(carro.get().getDataCriacao());
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(obj));
 	}
 }
