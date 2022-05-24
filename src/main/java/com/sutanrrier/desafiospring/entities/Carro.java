@@ -38,15 +38,6 @@ public class Carro {
 	public Carro() {
 		
 	}
-	public Carro(Integer id, String cor, String placa, Double velocidademax, Date dataCriacao,
-			Estacionamento estacionamento) {
-		this.id = id;
-		this.cor = cor;
-		this.placa = placa;
-		this.velocidademax = velocidademax;
-		this.dataCriacao = dataCriacao;
-		this.estacionamento = estacionamento;
-	}
 
 	//Getters e Setters
 	public Integer getId() {

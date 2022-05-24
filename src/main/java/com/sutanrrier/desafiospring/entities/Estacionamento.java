@@ -28,11 +28,6 @@ public class Estacionamento {
 	public Estacionamento() {
 		
 	}
-	public Estacionamento(Integer id, String nome, Date dataCriacao) {
-		this.id = id;
-		this.nome = nome;
-		this.dataCriacao = dataCriacao;
-	}
 
 	//Getters e Setters
 	public Integer getId() {
