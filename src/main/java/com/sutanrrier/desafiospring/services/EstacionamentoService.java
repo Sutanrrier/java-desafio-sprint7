@@ -3,6 +3,8 @@ package com.sutanrrier.desafiospring.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,13 @@ public class EstacionamentoService {
 		return repository.findById(id);
 	}
 	
+	@Transactional
 	public Estacionamento save(Estacionamento estacionamento) {
 		return repository.save(estacionamento);
+	}
+	
+	@Transactional
+	public void delete(Estacionamento estacionamento) {
+		repository.delete(estacionamento);
 	}
 }
