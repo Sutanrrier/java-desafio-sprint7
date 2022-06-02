@@ -2,6 +2,7 @@ package com.sutanrrier.desafiospring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ public class DesafiospringApplication {
 	
 	@GetMapping
 	public ResponseEntity<String> helloWorld(){
-		return ResponseEntity.ok().body("Hello World!");
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+		
+		return ResponseEntity.ok().headers(headers).body("Hello World!");
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +30,9 @@ public class EstacionamentoController {
 	
 	@GetMapping
 	public ResponseEntity<List<Estacionamento>> getAllEstacionamentos(){
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+		return ResponseEntity.status(HttpStatus.OK).headers(headers).body(service.findAll());
 	}
 	
 	@GetMapping(value="/{id}")
