@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sutanrrier.desafiospring.headers.MyHeaders;
+
 @SpringBootApplication
 @RestController
 @RequestMapping(value="/")
@@ -19,8 +21,7 @@ public class DesafiospringApplication {
 	
 	@GetMapping
 	public ResponseEntity<String> helloWorld(){
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+		HttpHeaders headers = MyHeaders.getHeaders();
 		
 		return ResponseEntity.ok().headers(headers).body("Hello World!");
 	}
