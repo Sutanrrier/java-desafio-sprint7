@@ -3,6 +3,7 @@ package com.sutanrrier.desafiospring;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,6 @@ public class DesafiospringApplication {
 	public ResponseEntity<String> helloWorld(){
 		HttpHeaders headers = MyHeaders.getHeaders();
 		
-		return ResponseEntity.ok().headers(headers).body("Hello World!");
+		return ResponseEntity.status(HttpStatus.OK).headers(headers).body("Hello World!");
 	}
 }
