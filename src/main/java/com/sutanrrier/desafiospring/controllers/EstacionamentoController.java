@@ -2,10 +2,10 @@ package com.sutanrrier.desafiospring.controllers;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,22 +16,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sutanrrier.desafiospring.entities.Estacionamento;
 import com.sutanrrier.desafiospring.services.EstacionamentoService;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/estacionamentos")
 public class EstacionamentoController {
 
 	@Autowired
-	private EstacionamentoService service;
+	private EstacionamentoService service;	
 
 	@GetMapping
-	public ResponseEntity<List<Estacionamento>> getAllEstacionamentos() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+	public ResponseEntity<Page<Estacionamento>> getAllEstacionamentos(@RequestParam(defaultValue = "0") Integer page) {
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll(page));
 	}
 
 	@GetMapping(value = "/{id}")

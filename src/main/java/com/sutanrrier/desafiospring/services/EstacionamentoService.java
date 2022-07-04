@@ -1,11 +1,13 @@
 package com.sutanrrier.desafiospring.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,12 @@ public class EstacionamentoService {
 	@Autowired
 	private EstacionamentoRepository repository;
 	
-	public List<Estacionamento> findAll(){
-		return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+	public Page<Estacionamento> findAll(Integer page){
+		Sort sort = Sort.by("id").ascending();
+		
+		Pageable pageable = PageRequest.of(page, 5, sort);
+		
+		return repository.findAll(pageable);
 	}
 	
 	public Optional<Estacionamento> findById(Integer id){
