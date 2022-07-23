@@ -2,6 +2,7 @@ package com.sutanrrier.desafiospring.controllers;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class EstacionamentoController {
 		return ResponseEntity.status(HttpStatus.OK).body(service.findAll(page));
 	}
 
+	@GetMapping(value="/all")
+	public ResponseEntity<List<Estacionamento>> getAllEstacionamentos() {
+		return ResponseEntity.status(HttpStatus.OK).body(service.getAllEstacionamentos());
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Object> getEstacionamentoById(@PathVariable Integer id) {
 		Optional<Estacionamento> estacionamento = service.findById(id);

@@ -1,5 +1,6 @@
 package com.sutanrrier.desafiospring.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -26,6 +27,10 @@ public class EstacionamentoService {
 		Pageable pageable = PageRequest.of(page, 5, sort);
 		
 		return repository.findAll(pageable);
+	}
+	
+	public List<Estacionamento> getAllEstacionamentos(){
+		return repository.findAll();
 	}
 	
 	public Optional<Estacionamento> findById(Integer id){
