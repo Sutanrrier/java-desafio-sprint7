@@ -29,7 +29,17 @@ public class CarroController {
 
 	@Autowired
 	private CarroService service;
-
+	
+	@GetMapping(value = "/relatorio/{id}")
+	public ResponseEntity<String> gerarRelatorioByEstacionamento(@PathVariable Integer id){
+		return ResponseEntity.status(HttpStatus.OK).body(service.gerarRelatorioByEstacionamento(id));
+	}
+	
+	@GetMapping(value = "/relatorio/all")
+	public ResponseEntity<String> gerarRelatorioAllCarros(){
+		return ResponseEntity.status(HttpStatus.OK).body(service.gerarRelatorioAllCarros());
+	}
+	
 	@GetMapping
 	public ResponseEntity<Page<Carro>> getAllCarros(@RequestParam(defaultValue = "0") Integer page) {
 		return ResponseEntity.status(HttpStatus.OK).body(service.findAll(page));

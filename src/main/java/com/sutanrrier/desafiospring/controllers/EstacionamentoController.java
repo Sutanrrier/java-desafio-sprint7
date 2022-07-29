@@ -30,7 +30,7 @@ public class EstacionamentoController {
 
 	@Autowired
 	private EstacionamentoService service;	
-
+	
 	@GetMapping
 	public ResponseEntity<Page<Estacionamento>> getAllEstacionamentos(@RequestParam(defaultValue = "0") Integer page) {
 		return ResponseEntity.status(HttpStatus.OK).body(service.findAll(page));

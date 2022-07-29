@@ -70,5 +70,11 @@ public class Estacionamento implements Serializable{
 		Estacionamento other = (Estacionamento) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
 	
 }
