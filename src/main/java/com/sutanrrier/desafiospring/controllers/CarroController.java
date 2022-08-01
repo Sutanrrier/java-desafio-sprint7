@@ -6,8 +6,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +20,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.sutanrrier.desafiospring.entities.Carro;
 import com.sutanrrier.desafiospring.services.CarroService;
 
-@RestController
+@Controller
 @CrossOrigin(origins = "*")
 @RequestMapping(value = "/carros")
 public class CarroController {
@@ -31,13 +33,21 @@ public class CarroController {
 	private CarroService service;
 	
 	@GetMapping(value = "/relatorio/{id}")
-	public ResponseEntity<String> gerarRelatorioByEstacionamento(@PathVariable Integer id){
-		return ResponseEntity.status(HttpStatus.OK).body(service.gerarRelatorioByEstacionamento(id));
+	public ResponseEntity<byte[]> gerarRelatorioByEstacionamento(@PathVariable Integer id){
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=relatorio.pdf");
+		
+		return ResponseEntity.ok().headers(headers)
+				.contentType(MediaType.APPLICATION_PDF).body(service.gerarRelatorioByEstacionamento(id));
 	}
 	
 	@GetMapping(value = "/relatorio/all")
-	public ResponseEntity<String> gerarRelatorioAllCarros(){
-		return ResponseEntity.status(HttpStatus.OK).body(service.gerarRelatorioAllCarros());
+	public ResponseEntity<byte[]> gerarRelatorioAllCarros(){
+		HttpHeaders headers = new HttpHeaders();
+		headers.set(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=relatorio.pdf");
+		
+		return ResponseEntity.ok().headers(headers)
+				.contentType(MediaType.APPLICATION_PDF).body(service.gerarRelatorioAllCarros());
 	}
 	
 	@GetMapping
